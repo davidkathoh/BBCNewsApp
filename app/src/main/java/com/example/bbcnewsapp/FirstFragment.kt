@@ -1,6 +1,7 @@
 package com.example.bbcnewsapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,7 @@ import com.example.bbcnewsapp.databinding.FragmentFirstBinding
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class FirstFragment : Fragment(),NewsAdapter.OnNewsClicklistener {
 
 
 
@@ -34,7 +35,7 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val dataset = arrayOf("January", "February", "March","January", "February", "March")
-        val adapter = NewsAdapter(dataset)
+        val adapter = NewsAdapter(dataset,this)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.recycleView)
         recyclerView.adapter = adapter
@@ -44,6 +45,10 @@ class FirstFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+
+    }
+
+    override fun onClick(position: Int) {
 
     }
 }
