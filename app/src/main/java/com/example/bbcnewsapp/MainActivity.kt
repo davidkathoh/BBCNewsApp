@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
             })
 
         promptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("BBC news Login")
+            .setTitle("${getString(R.string.sourceName)} Login")
             .setSubtitle("Log in using your biometric credential")
             .setNegativeButtonText("cancel")
             .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG)

@@ -26,6 +26,30 @@ android {
             )
         }
     }
+    flavorDimensions += "source"
+    productFlavors {
+        create("bbc") {
+            manifestPlaceholders += mapOf()
+            // Assigns this product flavor to the "version" flavor dimension.
+            // If you are using only one dimension, this property is optional,
+            // and the plugin automatically assigns all the module's flavors to
+            // that dimension.
+            dimension = "source"
+            applicationIdSuffix = ".bbc"
+            versionNameSuffix = "-bbc"
+            resValue("string", "sourceName", "BBC News")
+            resValue("string", "sourceId", "bbc-news")
+
+        }
+        create("bloomberg") {
+            dimension = "source"
+            applicationIdSuffix = ".bloomberg"
+            versionNameSuffix = "-bloomberg"
+            resValue("string", "sourceName", "Bloomberg")
+            resValue("string", "sourceId", "bloomberg")
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8

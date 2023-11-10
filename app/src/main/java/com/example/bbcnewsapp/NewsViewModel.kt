@@ -1,6 +1,8 @@
 package com.example.bbcnewsapp
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +11,7 @@ import com.example.bbcnewsapp.model.Articles
 import com.example.bbcnewsapp.model.RetrofitInstance
 import kotlinx.coroutines.launch
 
-class NewsViewModel: ViewModel() {
+class NewsViewModel(application: Application) : AndroidViewModel(application) {
     private val _article = MutableLiveData<Articles>()
     val article: LiveData<Articles> = _article
 
@@ -24,7 +26,7 @@ class NewsViewModel: ViewModel() {
         viewModelScope.launch {
             Log.e("Executing","Execution")
             try {
-                val result  =  RetrofitInstance.apiService.getNews()
+                val result  =  RetrofitInstance.apiService.getNews(source =getApplication<Application>().getString(R.string.sourceId) )
                 _articles.value = result.articles
                 Log.e("Test",result.totalResults.toString())
             }catch (e:Exception){
