@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
 
         if (isBiometricAvailable()){
             authenticate()
+        }else{
+            showLayout()
         }
 
 
@@ -60,11 +62,6 @@ class MainActivity : AppCompatActivity() {
             BiometricManager.BIOMETRIC_SUCCESS -> {
                 // The user can authenticate with biometrics, continue with the authentication process
                 return true
-            }
-             BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> {
-                // Handle the error cases as needed in your app
-                 showLayout()
-                return false
             }
 
             else -> {
