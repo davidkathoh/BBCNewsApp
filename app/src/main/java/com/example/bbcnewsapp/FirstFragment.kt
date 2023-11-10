@@ -43,7 +43,8 @@ class FirstFragment : Fragment(),NewsAdapter.OnNewsClicklistener {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        newsViewModel.quantity.observe(viewLifecycleOwner) {
+
+        newsViewModel.articles.observe(viewLifecycleOwner){
             adapter.setdata(it)
         }
 

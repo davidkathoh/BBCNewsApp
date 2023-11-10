@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.bbcnewsapp.model.Articles
 import com.google.android.material.card.MaterialCardView
 
 
@@ -16,7 +17,7 @@ class NewsAdapter(private val listener:OnNewsClicklistener):RecyclerView.Adapter
 
     lateinit var context:Context
     lateinit var clicklistener: OnNewsClicklistener
-    private var dataSet: Array<String> = arrayOf()
+    private var dataSet: List<Articles> = listOf()
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
@@ -31,7 +32,7 @@ class NewsAdapter(private val listener:OnNewsClicklistener):RecyclerView.Adapter
 
         }
     }
-    fun setdata(data: Array<String>){
+    fun setdata(data: List<Articles>){
         dataSet = data
         notifyDataSetChanged()
     }
@@ -45,8 +46,9 @@ class NewsAdapter(private val listener:OnNewsClicklistener):RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: NewsAdapter.ViewHolder, position: Int) {
-        holder.headLine.text = dataSet[position]
-        Glide.with(context).load("https://picsum.photos/200").into(holder.cover)
+        val article = dataSet[position]
+        holder.headLine.text = article.title
+        Glide.with(context).load(article.urlToImage).into(holder.cover)
         holder.card.setOnClickListener {
             clicklistener.onClick(position)
         }

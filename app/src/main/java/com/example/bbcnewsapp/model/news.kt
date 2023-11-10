@@ -1,26 +1,26 @@
 package com.example.bbcnewsapp.model
 
-import com.google.gson.annotations.SerializedName
 
-data class News (
-        @SerializedName("status") val status : String,
-        @SerializedName("totalResults") val totalResults : Int,
-        @SerializedName("articles") val articles : List<Articles>
-)
-data class Articles (
-
-    @SerializedName("source") val source : Source,
-    @SerializedName("author") val author : String,
-    @SerializedName("title") val title : String,
-    @SerializedName("description") val description : String,
-    @SerializedName("url") val url : String,
-    @SerializedName("urlToImage") val urlToImage : String,
-    @SerializedName("publishedAt") val publishedAt : String,
-    @SerializedName("content") val content : String
+data class News(
+    val status: String,
+    val totalResults: Int,
+    val articles: List<Articles>
 )
 
-data class Source (
+data class Articles(
 
-    @SerializedName("id") val id : String,
-    @SerializedName("name") val name : String
+    val source: Source,
+    val author: String,
+    val title: String,
+    val description: String,
+    val url: String,
+    val urlToImage: String,
+    val publishedAt: String,
+    val content: String
+)
+
+data class Source(
+
+    val id: String,
+    val name: String
 )
