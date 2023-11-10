@@ -50,7 +50,7 @@ class NewsAdapter(private val listener:OnNewsClicklistener):RecyclerView.Adapter
         holder.headLine.text = article.title
         Glide.with(context).load(article.urlToImage).into(holder.cover)
         holder.card.setOnClickListener {
-            clicklistener.onClick(position)
+            clicklistener.onClick(article)
         }
     }
 
@@ -59,7 +59,7 @@ class NewsAdapter(private val listener:OnNewsClicklistener):RecyclerView.Adapter
     }
 
     interface OnNewsClicklistener{
-        fun onClick(position: Int)
+        fun onClick(articles: Articles)
     }
 
 }

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bbcnewsapp.databinding.FragmentFirstBinding
+import com.example.bbcnewsapp.model.Articles
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -55,7 +56,8 @@ class FirstFragment : Fragment(),NewsAdapter.OnNewsClicklistener {
 
     }
 
-    override fun onClick(position: Int) {
+    override fun onClick(article: Articles) {
+        newsViewModel.setArticle(article)
         findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
     }
 }

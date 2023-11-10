@@ -10,19 +10,17 @@ import com.example.bbcnewsapp.model.RetrofitInstance
 import kotlinx.coroutines.launch
 
 class NewsViewModel: ViewModel() {
-    private val _quantity = MutableLiveData<Array<String>>()
-    val quantity: LiveData<Array<String>> = _quantity
+    private val _article = MutableLiveData<Articles>()
+    val article: LiveData<Articles> = _article
 
     private val _articles = MutableLiveData<List<Articles>>()
     val articles:LiveData<List<Articles>> = _articles
 
     init {
-        setQuantity(0)
+       getNews()
     }
 
-    fun setQuantity(numberCupcakes: Int) {
-        _quantity.value =  arrayOf("January", "February", "March","January", "February", "March")
-
+    fun getNews() {
         viewModelScope.launch {
             Log.e("Executing","Execution")
             try {
@@ -34,6 +32,10 @@ class NewsViewModel: ViewModel() {
             }
 
         }
+    }
+
+    fun setArticle(articles: Articles){
+        _article.value = articles
     }
 
 }
