@@ -34,11 +34,13 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val title = view.findViewById<TextView>(R.id.tvTitle)
         val description = view.findViewById<TextView>(R.id.tvDescription)
+        val content = view.findViewById<TextView>(R.id.tvContent)
         val cover = view.findViewById<ImageView>(R.id.imgBigCover)
 
         newsViewModel.article.observe(viewLifecycleOwner){
             title.text = it.title
             description.text = it.description
+            content.text = it.content
             Glide.with(requireContext()).load(it.urlToImage).into(cover)
         }
 
