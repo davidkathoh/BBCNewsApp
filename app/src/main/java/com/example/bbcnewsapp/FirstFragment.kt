@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,7 @@ class FirstFragment : Fragment(),NewsAdapter.OnNewsClicklistener {
 
 
 
+    private val newsViewModel: NewsViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -34,12 +36,16 @@ class FirstFragment : Fragment(),NewsAdapter.OnNewsClicklistener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dataset = arrayOf("January", "February", "March","January", "February", "March")
-        val adapter = NewsAdapter(dataset,this)
+
+        val adapter = NewsAdapter(this)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.recycleView)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        newsViewModel.quantity.observe(viewLifecycleOwner) {
+            adapter.setdata(it)
+        }
 
     }
 
@@ -49,6 +55,6 @@ class FirstFragment : Fragment(),NewsAdapter.OnNewsClicklistener {
     }
 
     override fun onClick(position: Int) {
-
+        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
     }
 }

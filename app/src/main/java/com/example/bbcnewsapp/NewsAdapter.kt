@@ -11,11 +11,12 @@ import com.bumptech.glide.Glide
 import com.google.android.material.card.MaterialCardView
 
 
-class NewsAdapter(private val dataSet: Array<String>,private val listener:OnNewsClicklistener):RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+class NewsAdapter(private val listener:OnNewsClicklistener):RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
 
     lateinit var context:Context
     lateinit var clicklistener: OnNewsClicklistener
+    private var dataSet: Array<String> = arrayOf()
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
@@ -29,6 +30,10 @@ class NewsAdapter(private val dataSet: Array<String>,private val listener:OnNews
             card = view.findViewById(R.id.cardNews)
 
         }
+    }
+    fun setdata(data: Array<String>){
+        dataSet = data
+        notifyDataSetChanged()
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
