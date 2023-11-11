@@ -10,6 +10,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.bbcnewsapp.model.Articles
 import com.example.bbcnewsapp.model.RetrofitInstance
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class NewsViewModel(application: Application) : AndroidViewModel(application) {
     private val _article = MutableLiveData<Articles>()
@@ -25,11 +27,9 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getNews() {
         viewModelScope.launch {
-            Log.e("Executing","Execution")
             try {
                 val result  =  RetrofitInstance.apiService.getNews(source =getApplication<Application>().getString(R.string.sourceId) )
-                _articles.value = result.articles
-                Log.e("Test",result.totalResults.toString())
+                _articles.value = result.articles.sortedByDescending { it.publishedAt }
             }catch (e:Exception){
 
             }
@@ -39,6 +39,9 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun setArticle(articles: Articles){
         _article.value = articles
+
+
     }
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.bbcnewsapp.model
 
+import com.example.bbcnewsapp.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,7 +17,7 @@ interface Api {
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
-    .baseUrl("https://newsapi.org/v2/")
+    .baseUrl(BuildConfig.BASE_URL)
     .build()
 
 object RetrofitInstance {
