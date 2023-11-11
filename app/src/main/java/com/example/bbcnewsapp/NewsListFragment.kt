@@ -1,7 +1,6 @@
 package com.example.bbcnewsapp
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +9,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bbcnewsapp.databinding.FragmentFirstBinding
 import com.example.bbcnewsapp.model.Articles
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment(),NewsAdapter.OnNewsClicklistener {
+class NewsListFragment : Fragment(),NewsAdapter.OnNewsClicklistener {
 
 
 
@@ -28,7 +26,7 @@ class FirstFragment : Fragment(),NewsAdapter.OnNewsClicklistener {
         savedInstanceState: Bundle?
     ): View? {
 
-        return  inflater.inflate(R.layout.fragment_first, container, false)
+        return  inflater.inflate(R.layout.fragment_news_list, container, false)
 
 
 

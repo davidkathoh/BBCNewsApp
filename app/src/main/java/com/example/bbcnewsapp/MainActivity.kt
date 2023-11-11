@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                                                    errString: CharSequence) {
                     super.onAuthenticationError(errorCode, errString)
                     Toast.makeText(applicationContext,
-                        "Authentication error: $errString", Toast.LENGTH_SHORT)
+                        getString(R.string.authentication_error, errString), Toast.LENGTH_SHORT)
                         .show()
                 }
 
@@ -102,13 +102,13 @@ class MainActivity : AppCompatActivity() {
                     super.onAuthenticationSucceeded(result)
                     showLayout()
                     Toast.makeText(applicationContext,
-                        "Authentication succeeded!", Toast.LENGTH_SHORT)
+                        getString(R.string.authentication_succeeded), Toast.LENGTH_SHORT)
                         .show()
                 }
 
                 override fun onAuthenticationFailed() {
                     super.onAuthenticationFailed()
-                    Toast.makeText(applicationContext, "Authentication failed",
+                    Toast.makeText(applicationContext, getString(R.string.authentication_failed),
                         Toast.LENGTH_SHORT)
                         .show()
                     isLogin = false
@@ -119,8 +119,8 @@ class MainActivity : AppCompatActivity() {
 
         promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle("${getString(R.string.sourceName)} Login")
-            .setSubtitle("Log in using your biometric credential")
-            .setNegativeButtonText("cancel")
+            .setSubtitle(getString(R.string.log_in_using_your_biometric_credential))
+            .setNegativeButtonText(getString(R.string.cancel))
             .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG)
             .build()
         biometricPrompt.authenticate(promptInfo)

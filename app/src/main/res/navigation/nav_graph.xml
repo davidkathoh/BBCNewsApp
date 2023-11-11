@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.bbcnewsapp.FirstFragment"
+        android:name="com.example.bbcnewsapp.NewsListFragment"
         android:label="@string/sourceName"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_news_list">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.bbcnewsapp.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:name="com.example.bbcnewsapp.NewsDetailFragment"
+        android:label="@string/sourceName"
+        tools:layout="@layout/fragment_news_detail">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
