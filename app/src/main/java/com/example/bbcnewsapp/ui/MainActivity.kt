@@ -1,20 +1,16 @@
-package com.example.bbcnewsapp
+package com.example.bbcnewsapp.ui
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import com.example.bbcnewsapp.R
 import com.example.bbcnewsapp.databinding.ActivityMainBinding
 import java.util.concurrent.Executor
 

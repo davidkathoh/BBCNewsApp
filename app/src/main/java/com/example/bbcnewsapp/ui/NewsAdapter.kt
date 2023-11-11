@@ -1,4 +1,4 @@
-package com.example.bbcnewsapp
+package com.example.bbcnewsapp.ui
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,11 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.bbcnewsapp.R
 import com.example.bbcnewsapp.model.Articles
 import com.google.android.material.card.MaterialCardView
 
 
-class NewsAdapter(private val listener:OnNewsClicklistener):RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+class NewsAdapter(private val listener: OnNewsClicklistener):RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
 
     lateinit var context:Context
@@ -36,7 +37,7 @@ class NewsAdapter(private val listener:OnNewsClicklistener):RecyclerView.Adapter
         dataSet = data
         notifyDataSetChanged()
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.news_item, parent, false)
         context = parent.context
@@ -45,7 +46,7 @@ class NewsAdapter(private val listener:OnNewsClicklistener):RecyclerView.Adapter
 
     }
 
-    override fun onBindViewHolder(holder: NewsAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article = dataSet[position]
         holder.headLine.text = article.title
         Glide.with(context).load(article.urlToImage).into(holder.cover)

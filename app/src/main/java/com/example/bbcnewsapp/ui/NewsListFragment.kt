@@ -1,20 +1,23 @@
-package com.example.bbcnewsapp
+package com.example.bbcnewsapp.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bbcnewsapp.NewsViewModel
+import com.example.bbcnewsapp.R
 import com.example.bbcnewsapp.model.Articles
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class NewsListFragment : Fragment(),NewsAdapter.OnNewsClicklistener {
+class NewsListFragment : Fragment(), NewsAdapter.OnNewsClicklistener {
 
 
 
@@ -45,6 +48,10 @@ class NewsListFragment : Fragment(),NewsAdapter.OnNewsClicklistener {
 
         newsViewModel.articles.observe(viewLifecycleOwner){
             adapter.setdata(it)
+        }
+
+        newsViewModel.error.observe(viewLifecycleOwner){
+            Toast.makeText(requireContext(),"Error while loading new",Toast.LENGTH_LONG).show()
         }
 
     }

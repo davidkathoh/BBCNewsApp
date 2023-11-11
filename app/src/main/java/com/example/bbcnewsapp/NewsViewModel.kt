@@ -20,6 +20,9 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     private val _articles = MutableLiveData<List<Articles>>()
     val articles:LiveData<List<Articles>> = _articles
 
+    private val _error = MutableLiveData<Boolean>()
+    val error:LiveData<Boolean> = _error
+
 
     init {
        getNews()
@@ -31,7 +34,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                 val result  =  RetrofitInstance.apiService.getNews(source =getApplication<Application>().getString(R.string.sourceId) )
                 _articles.value = result.articles.sortedByDescending { it.publishedAt }
             }catch (e:Exception){
-
+                _error.value = true
             }
 
         }

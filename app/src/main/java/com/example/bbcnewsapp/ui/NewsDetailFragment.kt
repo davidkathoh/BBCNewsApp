@@ -1,4 +1,4 @@
-package com.example.bbcnewsapp
+package com.example.bbcnewsapp.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
+import com.example.bbcnewsapp.NewsViewModel
+import com.example.bbcnewsapp.R
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.

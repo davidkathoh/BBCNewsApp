@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.bbcnewsapp.NewsListFragment"
+        android:name="com.example.bbcnewsapp.ui.NewsListFragment"
         android:label="@string/sourceName"
         tools:layout="@layout/fragment_news_list">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.bbcnewsapp.NewsDetailFragment"
+        android:name="com.example.bbcnewsapp.ui.NewsDetailFragment"
         android:label="@string/sourceName"
         tools:layout="@layout/fragment_news_detail">
 
