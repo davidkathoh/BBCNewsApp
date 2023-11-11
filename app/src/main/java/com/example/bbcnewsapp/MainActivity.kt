@@ -82,6 +82,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext,
                         "Authentication error: $errString", Toast.LENGTH_SHORT)
                         .show()
+                    finishAffinity()
                 }
 
                 override fun onAuthenticationSucceeded(

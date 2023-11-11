@@ -10,14 +10,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="130dp">
 
         <ImageView
             android:id="@+id/imgCover"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="#FFC107"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
@@ -25,17 +26,27 @@
         <TextView
             android:id="@+id/tvHeadline"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:ellipsize="marquee"
+            android:fontFamily="@font/noto_serif_bold"
+            android:textAlignment="viewStart"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
             app:layout_constraintBottom_toBottomOf="@+id/imgCover"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgCover"
             app:layout_constraintTop_toTopOf="@+id/imgCover"
             tools:text="TextView" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
