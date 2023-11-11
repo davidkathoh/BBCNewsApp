@@ -1,6 +1,8 @@
 package com.example.bbcnewsapp
 
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -23,22 +25,27 @@ class MainActivity : AppCompatActivity() {
     private lateinit var executor: Executor
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
+    private var isLogin = true
+    private val LOGIN_KEY = "login"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        if (isBiometricAvailable()){
-            authenticate()
-        }else{
+
+        if (savedInstanceState == null) {
+            if (isBiometricAvailable()) {
+                authenticate()
+            } else {
+                showLayout()
+            }
+        } else if (savedInstanceState.getBoolean(LOGIN_KEY)) {
             showLayout()
         }
 
-
-
-
     }
+
 
 
     private fun showLayout(){
@@ -54,6 +61,13 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean(LOGIN_KEY,isLogin)
+        super.onSaveInstanceState(outState)
+    }
+
+
+
     private fun isBiometricAvailable(): Boolean {
         val biometricManager = BiometricManager.from(this)
 
@@ -63,9 +77,8 @@ class MainActivity : AppCompatActivity() {
                 // The user can authenticate with biometrics, continue with the authentication process
                 return true
             }
-
             else -> {
-                // Biometric status unknown or another error occurred
+
                 return false
             }
         }
@@ -82,7 +95,6 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext,
                         "Authentication error: $errString", Toast.LENGTH_SHORT)
                         .show()
-                    finishAffinity()
                 }
 
                 override fun onAuthenticationSucceeded(
@@ -99,6 +111,8 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, "Authentication failed",
                         Toast.LENGTH_SHORT)
                         .show()
+                    isLogin = false
+                    finishAffinity()
 
                 }
             })
@@ -110,6 +124,5 @@ class MainActivity : AppCompatActivity() {
             .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG)
             .build()
         biometricPrompt.authenticate(promptInfo)
-
     }
 }

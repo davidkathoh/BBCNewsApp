@@ -18,6 +18,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     private val _articles = MutableLiveData<List<Articles>>()
     val articles:LiveData<List<Articles>> = _articles
 
+
     init {
        getNews()
     }
