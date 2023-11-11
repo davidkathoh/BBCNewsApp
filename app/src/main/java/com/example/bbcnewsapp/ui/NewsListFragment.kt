@@ -51,7 +51,8 @@ class NewsListFragment : Fragment(), NewsAdapter.OnNewsClicklistener {
         }
 
         newsViewModel.error.observe(viewLifecycleOwner){
-            Toast.makeText(requireContext(),"Error while loading new",Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.error_while_loading_new),Toast.LENGTH_LONG).show()
         }
 
     }
